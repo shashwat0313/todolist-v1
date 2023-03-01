@@ -1,54 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <title>To Do List - v1</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-
-<body>
-  <div class="box" id="heading">
-    <h1><%=dayvalue%></h1>
-  </div>
-  <!-- <h3 >Tasks: </h3> -->
-  <div class="box taskContainer" style="overflow-y:hidden; height:400px;">
-    <% for( let index = 0; index < taskArray.length; index++ ) { %>
-    <div class="item">
-      <input type="checkbox">
+  
+  <head>
+    <meta charset="UTF-8">
+    <title>To Do List - v1</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  
+  <body>
+    <div class="box" id="heading">
+      <h1><%=dayvalue%></h1>
+    </div>
+    <!-- <h3 >Tasks: </h3> -->
+    <div class="box taskContainer" style="overflow-y:hidden; height:400px;">
+      <% for( let index = 0; index < taskArray.length; index++ ) { %>
+        <div class="item">
+          <input type="checkbox">
       <p>
         <%= taskArray[index] %>
       </p>
     </div>
     <% } %>
-    </div>
-
-
-    <div class="box addingTask">
+  </div>
+  
+  <div class="box addingTask">
     <form action="/" method="post" class="item">
       <input class="textbox" type="text" name="task" placeholder="New Task" autocomplete="off">
-      <button type="submit">+</button>
-      <script>
-        let x = document.querySelector(".textbox")
-        x.addEventListener("focus", ()=>{
-          x.placeholder = ''
-        })
-        x.addEventListener("focusout", ()=>{
-          x.placeholder = 'New Task'
-        })
-        </script>
+      <button  type="submit" name="list" value=<%=dayvalue%>>+</button>
       
     </form>
+    
   </div>
+  
+  <table style="margin:0 auto;">
+    <tr>
+      <td >
+        <form action="./">
+          <button type="submit" class="linkButton" style="width: 8rem;">
+            Regular
+          </button>
+        </form>
+      </td>
+      <td >
+        <form action="./work">
+          <button type="submit" class="linkButton" style="width: 8rem;">
+            Work
+          </button>
+        </form>
+      </td>
+    </tr>
+  </table>
+  
+  
+
   <script>
+    let x = document.querySelector(".textbox")
+    x.addEventListener("focus", () => {
+      x.placeholder = ''
+    })
+    x.addEventListener("focusout", () => {
+      x.placeholder = 'New Task'
+    })
     let z = document.querySelector(".taskContainer")
-    z.addEventListener("mouseover", ()=>{
+    z.addEventListener("mouseover", () => {
       z.style.overflowY = 'scroll'
     })
-    z.addEventListener("mouseout", ()=>{
+    z.addEventListener("mouseout", () => {
       z.style.overflowY = 'hidden';
     })
     </script>
 </body>
+<br>
+<%- include('footer') %>
+
+<div style="text-align: center;">
+  <a href="./about">About</a>
+  </form>
+</div>
 
 </html>
